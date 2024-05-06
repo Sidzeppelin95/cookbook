@@ -1,0 +1,23 @@
+ emotion_groups = {
+         "positive": ["joy", "love", "gratitude", "serenity", "optimism"],
+         "negative": ["anger", "sadness", "fear", "disgust", "guilt"],
+         "neutral": ["surprise", "boredom", "confusion"],
+     }
+
+     emotion_dict = {}
+     for emotion in emotion_groups:
+         for word in emotion_groups[emotion]:
+             emotion_dict[word] = emotion
+
+     with open("data.json", "r") as f:
+         data = json.load(f)
+
+     for item in data:
+         emotions = []
+         for word in item["context"].split():
+             if word in emotion_dict:
+                 emotions.append(emotion_dict[word])
+         item["emotion_group"] = max(set(emotions), key=emotions.count)
+
+     with open("data.json", "w") as f:
+        json.dump(data, f)  
