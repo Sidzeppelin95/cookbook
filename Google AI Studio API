@@ -1,7 +1,7 @@
 import google.generativeai as genai
 import os
 
-genai.configure(api_key=os.environ["AIzaSyBz0ZXpwjuJwFXk53aF31QjGvi1-Sj45jk"])
+genai.configure(api_key=os.environ["AIzaSyBz0ZXpwjuJwFXk53aF31QjGvi45jk"])
 
 model = genai.GenerativeModel('gemini-1.0-pro-latest')
 response = model.generate_content("The opposite of hot is")
